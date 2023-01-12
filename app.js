@@ -1,5 +1,5 @@
 const express = require('express');
-
+const mongoose = require('mongoose');
 const app = express();
 
 app.use((req, res, next) => {
@@ -22,3 +22,11 @@ app.use((req, res, next) => {
 });
 
 module.exports = app;
+
+mongoose.connect('mongodb+srv://user:Dropdead692@cluster0.ifa8own.mongodb.net/?retryWrites=true&w=majority',
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => console.log('Connexion à MongoDB réussie !'))
+    .catch(() => console.log('Connexion à MongoDB échouée !'));
