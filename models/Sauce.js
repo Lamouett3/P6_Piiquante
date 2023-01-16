@@ -15,4 +15,4 @@ const modelSauce = mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('modelsSauce', modelSauce);
+module.exports = mongoose.model('Sauce', modelSauce);

@@ -13,14 +13,14 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post('/api/sauce', (req, res, next) => {
+app.post('/api/sauces', (req, res, next) => {
     console.log(req.body);
     res.status(201).json({
         message: 'Objet créé !'
     });
 });
 
-app.use('/api/sauce', (req, res, next) => {
+app.use('/api/sauces', (req, res, next) => {
     const sauce = [
         /* {
                 _id: 'oeihfzeoi',
