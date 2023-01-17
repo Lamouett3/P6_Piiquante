@@ -1,8 +1,8 @@
 const express = require('express');
-
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-app.use(express.json());
+const Sauce = require('./models/sauce');
 
 app.use(express.json());
 
@@ -13,15 +13,20 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(bodyParser.json());
+
 app.post('/api/sauces', (req, res, next) => {
-    console.log(req.body);
-    res.status(201).json({
-        message: 'Objet créé !'
+    delete req.body._id;
+    const sauce = new Sauce({
+        ...req.body
     });
+    sauce.save()
+        .then(() => res.status(201).json({ message: 'Objet enregistré !' }))
+        .catch(error => res.status(400).json({ error }));
 });
 
 app.use('/api/sauces', (req, res, next) => {
-    const sauce = [
+    const sauces = [
         /* {
                 _id: 'oeihfzeoi',
                 title: 'Mon premier objet',
@@ -40,7 +45,7 @@ app.use('/api/sauces', (req, res, next) => {
             },
         */
     ];
-    res.status(200).json(sauce);
+    res.status(200).json(sauces);
 });
 module.exports = app;
 
