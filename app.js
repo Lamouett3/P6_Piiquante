@@ -4,7 +4,15 @@ const mongoose = require('mongoose');
 
 const sauceRoutes = require('./routes/route');
 
-app.use(express.json());
+mongoose.connect('mongodb+srv://user:Dropdead692@cluster0.ifa8own.mongodb.net/?retryWrites=true&w=majority',
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => console.log('Connexion à MongoDB réussie !'))
+    .catch(() => console.log('Connexion à MongoDB échouée !'));
+
+const app = express();
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -19,10 +27,3 @@ app.use('/api/sauces', sauceRoutes);
 
 module.exports = app;
 
-mongoose.connect('mongodb+srv://user:Dropdead692@cluster0.ifa8own.mongodb.net/?retryWrites=true&w=majority',
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(() => console.log('Connexion à MongoDB réussie !'))
-    .catch(() => console.log('Connexion à MongoDB échouée !'));
