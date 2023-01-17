@@ -31,6 +31,12 @@ app.put('/api/sauces/:id', (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 });
 
+app.delete('/api/sauces/:id', (req, res, next) => {
+    Sauce.deleteOne({ _id: req.params.id })
+        .then(() => res.status(200).json({ message: 'Objet supprimé !' }))
+        .catch(error => res.status(400).json({ error }));
+});
+
 app.get('/api/sauces/:id', (req, res, next) => {
     Sauce.findOne({ _id: req.params.id })
         .then(sauce => res.status(200).json(sauce))
