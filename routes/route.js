@@ -11,6 +11,6 @@ router.delete('/:id', sauceCtrl.deleteSauce);
 
 router.get('/:id', sauceCtrl.getOneSauce);
 
-router.use('/', sauceCtrl.getAllSauce);
+router.get('/', sauceCtrl.getAllSauce);
 
 module.exports = router;
