@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 const sauceRoutes = require('./routes/route');
-
 const userRoutes = require('./routes/user');
 
+// Connexion à la base de données avec mongoose
 mongoose.connect('mongodb+srv://user:Dropdead692@cluster0.ifa8own.mongodb.net/?retryWrites=true&w=majority',
     {
         useNewUrlParser: true,
@@ -26,8 +26,8 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
+app.use('/api/sauces', sauceRoutes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;
