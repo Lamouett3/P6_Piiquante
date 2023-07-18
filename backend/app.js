@@ -20,6 +20,7 @@ mongoose
 
 const app = express();
 
+// Configuration des en-têtes CORS pour autoriser les requêtes depuis n'importe quelle origine
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -35,8 +36,13 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
+// Routes pour les fonctionnalités d'authentification des utilisateurs
 app.use("/api/auth", userRoutes);
+
+// Routes pour les fonctionnalités de gestion des sauces
 app.use("/api/sauces", sauceRoutes);
+
+// Route pour servir les fichiers images statiques
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 module.exports = app;
