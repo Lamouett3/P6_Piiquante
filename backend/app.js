@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
+// Charge les variables d'environnement
 require("dotenv").config();
 const sauceRoutes = require("./routes/route");
 const userRoutes = require("./routes/user");
