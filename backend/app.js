@@ -2,14 +2,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
-
+require("dotenv").config();
 const sauceRoutes = require("./routes/route");
 const userRoutes = require("./routes/user");
 
 // Connexion à la base de données avec mongoose
 mongoose
   .connect(
-    "mongodb+srv://user:Dropdead692@cluster0.ifa8own.mongodb.net/?retryWrites=true&w=majority",
+    `mongodb+srv://user:${process.env.DB_PASSWORD}@cluster0.${process.env.DB_CLUSTER}.mongodb.net/?retryWrites=true&w=majority`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,

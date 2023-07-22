@@ -1,2 +1,4 @@
 # System files
-images
+image
+node_modules
+.env
