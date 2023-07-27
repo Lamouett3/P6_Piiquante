@@ -1,4 +1,4 @@
-Projet n°6 - Piquante : Construisez une API sécurisée pour une application d'avis gastronomiques
+Projet n°6 - Piiquante : Construisez une API sécurisée pour une application d'avis gastronomiques
 
 # téléchargement du PROJET ici :
 
@@ -16,7 +16,7 @@ $ npm install
 
 après, création du fichier .env à la racine du répertoire et y mettre les valeurs correctes pour se connecter à une base de donnée mongodb :
 
-DB_PASSWORD="password de la base de donnée mongodb"
+DB_PASSWORD="mot de passe de la base de donnée mongodb"
 
 DB_CLUSTER = "cluster de la base de donnée mongodb"
 
