@@ -1,27 +1,43 @@
-# HotTakes
+Projet n°6 - Piquante : Construisez une API sécurisée pour une application d'avis gastronomiques
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.4.
+# téléchargement du PROJET ici :
 
-## Development server
+$ git clone https://github.com/Lamouett3/P6_Piiquante
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Installation et mise en service du front et du back :
 
-## Code scaffolding
+// Backend :
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+dans le terminal aller dans le dossier racine du backend :
 
-## Build
+$ cd backend
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+$ npm install
 
-## Running unit tests
+après, création du fichier .env à la racine du répertoire et y mettre les valeurs correctes pour se connecter à une base de donnée mongodb :
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+DB_PASSWORD="password de la base de donnée mongodb"
 
-## Running end-to-end tests
+DB_CLUSTER = "cluster de la base de donnée mongodb"
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+TOKEN = "XXXXX"
 
-## Further help
+; prendre le fichier .example.env, mettre les bonnes valeurs et modifier le nom du fichier en .env
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+puis dans le terminal :
+
+$ nodemon serve
+
+** Listening on port 3000 **
+
+// frontend :
+
+ouvrir un nouveau terminal aller dans le dossier racine du frontend :
+
+$ cd frontend
+
+$ npm install
+
+$ npm start
+
+** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
