@@ -27,16 +27,6 @@ exports.createSauce = (req, res, next) => {
 
 // Modifie une sauce existante
 exports.modifySauce = (req, res, next) => {
-  const sauceObject = req.file
-    ? {
-        ...JSON.parse(req.body.sauce),
-        imageUrl: `${req.protocol}://${req.get("host")}/images/${
-          req.file.filename
-        }`,
-      }
-    : { ...req.body };
-
-  delete sauceObject._userId;
   // Recherche la sauce correspondante dans la base de données
   Sauce.findOne({ _id: req.params.id })
     .then((sauce) => {
@@ -44,12 +34,42 @@ exports.modifySauce = (req, res, next) => {
         // Vérifie si l'utilisateur est autorisé à modifier la sauce
         res.status(401).json({ message: "Non-autorisé" });
       } else {
+        // Récupérer le nom du fichier de l'ancienne image
+        const oldFilename = sauce.imageUrl.split("/images/")[1];
+
+        // Mettre à jour l'image de la sauce, s'il y a un nouveau fichier
+        const sauceObject = req.file
+          ? {
+              ...JSON.parse(req.body.sauce),
+              imageUrl: `${req.protocol}://${req.get("host")}/images/${
+                req.file.filename
+              }`,
+            }
+          : { ...req.body };
+
+        delete sauceObject._userId;
+
         // Met à jour la sauce avec les nouvelles données
         Sauce.updateOne(
           { _id: req.params.id },
           { ...sauceObject, _id: req.params.id }
         )
-          .then(() => res.status(200).json({ message: "Objet modifié!" }))
+          .then(() => {
+            // Si une nouvelle image a été ajoutée, supprimer l'ancienne image
+            if (req.file) {
+              fs.unlink(`images/${oldFilename}`, (err) => {
+                if (err) {
+                  console.error(
+                    "Erreur lors de la suppression de l'ancienne image :",
+                    err
+                  );
+                } else {
+                  console.log("Ancienne image supprimée avec succès");
+                }
+              });
+            }
+            res.status(200).json({ message: "Objet modifié !" });
+          })
           .catch((error) => res.status(401).json({ error }));
       }
     })
